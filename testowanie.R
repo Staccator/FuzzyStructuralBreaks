@@ -14,7 +14,9 @@ df2<-data.frame(matrix(unlist(pom2), nrow=length(pom2),
 d<-cbind(df,df2)
 ncol(d)
 d[10,2][[1]](-5:10)
-s<-apply(d,1,FUN=function(x){multi(x[1],x[2])})
+s<-apply(d,1,FUN=function(x){multi(x[[1]],x[[2]])})
 s[1]
 length(s)
+
+
 
