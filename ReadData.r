@@ -1,33 +1,19 @@
-read.table("time_series.xlsx", sep="\t")
-read.csv("time_series.xlsx")
-
 ##Zainstalowanie paczki do łatwiejszego przegladania exceli
-install.packages("readxl")
-##Dołaczenie biblioteki
+#install.packages("readxl")
 library("readxl")
 
+world_data <- read_excel("time_series.xlsx", sheet = "Data")
 
-my_data <- read_excel("time_series.xlsx", sheet = "Data")
-head(my_data)
-str(my_data)
+GetCountryGdp <- function(country){
+  na.exclude(simplify2array(world_data[world_data$country==country,6]))
+}
 
-##Czytanie jednej cechy danego państwa
-fr_data<-my_data[my_data$country=="France",6]
-fr_vector<-simplify2array(fr_data)
-plot(fr_vector)
+spain_gdp<-GetCountryGdp("Spain")
+plot(spain_gdp)
 
-
-
-data<-my_data[my_data$country=="Aruba",6]
-data[]
-##Pozbycie sie NA
-d<-na.exclude(data)
-vec<-simplify2array(d)
-plot(vec)
-
+vector <- spain_gdp
 ##Interpolacja na podstawie punktow, plus zageszczenie punktow
-fun<-approxfun(vec)
-dziedzina<-seq(0,50,by=0.01)
-plot(fun(dziedzina))
-
+fun<-approxfun(vector, rule = 2)
+domain<-seq(1, length(vector), by=0.1)
+plot(fun(domain))
 
