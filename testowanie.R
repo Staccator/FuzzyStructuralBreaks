@@ -1,25 +1,18 @@
-pom<-CreateFuzzySets(1:30)
-pom2<-CreateMinusCks(1:30)
-c<-simplify2array(pom)
-class(c)
-c<-unlist(pom)
-class(c)
-c<-as.vector(unlist(c))
-as.data.frame(c)
+source("FuzzyPartition.r")
+source("FuzzyTransform.r")
 
-df <- data.frame(matrix(unlist(pom), nrow=length(pom), 
-                        byrow=T),stringsAsFactors=FALSE)
-df2<-data.frame(matrix(unlist(pom2), nrow=length(pom2), 
-                       byrow=T),stringsAsFactors=FALSE)
+domain <- 1:5
+h <- domain[2] - domain[1]
+left_limits <- seq(from=domain[1]-h, length.out = length(domain), by=h)
+right_limits <- seq(from=domain[1]+h, length.out = length(domain), by=h)
+fuzzy_sets<-CreateFuzzySets(domain)
+minus_cks<-CreateMinusCks(domain)
+fuzzy_sets <- data.frame(matrix(unlist(fuzzy_sets), nrow=length(fuzzy_sets), byrow=T), stringsAsFactors=FALSE)
+minus_cks <-data.frame(matrix(unlist(minus_cks), nrow=length(minus_cks), byrow=T), stringsAsFactors=FALSE)
 
-pom2<-1:30
-d<-cbind(df,df2)
-d<-cbind(d,pom2)
+tab<-cbind(fuzzy_sets,minus_cks,left_limits, right_limits)
 
-s<-apply(d,1,FUN=function(x){multi(x[[1]],x[[2]])(x[[3]])})
-s
-length(s)
-
-
-
-pom
+res<-apply(tab,1,FUN=function(x){
+  integrate(multi(x[[1]], x[[2]]), x[[3]], x[[4]])
+})
+res
