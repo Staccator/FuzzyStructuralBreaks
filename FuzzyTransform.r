@@ -1,18 +1,19 @@
-fun<-function(x){x+5}
-fun2<-function(x){2*x}
-fun(2)*fun2(2)
+#integrate(fun,0,2)
 
-##calka
-integrate(fun,0,2)
-?integrate
+multi <- function(f1, f2){
+  result <- function(x){
+    f1(x) * f2(x)
+  }
+}
 
-n<-10
-left=0
-right=100
+minusck <- function(ck){
+  result <- function (x){
+    x - ck
+  }
+}
 
-CalculateBetaZero<-funtion(f,left,right,n)
+CalculateBetas<-function(nodes)
 {
-  res<-numeric(n)
-  nodes<-seq(left,right,length=n)
-  integrate(f,left,right)
+  fuzzy_sets<-CreateFuzzySets(nodes)
+  #integrate(f,left,right)
 }
