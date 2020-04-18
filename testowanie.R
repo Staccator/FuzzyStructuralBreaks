@@ -7,7 +7,7 @@ class(c)
 c<-as.vector(unlist(c))
 as.data.frame(c)
 
-df <- data.frame(matrix(unlist(pom), nrow=length(pom), 
+df <-data.frame(matrix(unlist(pom), nrow=length(pom), 
                         byrow=T),stringsAsFactors=FALSE)
 df2<-data.frame(matrix(unlist(pom2), nrow=length(pom2), 
                        byrow=T),stringsAsFactors=FALSE)
