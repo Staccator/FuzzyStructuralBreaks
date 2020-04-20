@@ -18,16 +18,7 @@ CreateMinusCks<-function(nodes)
 }
 
 minusFuncs<-CreateMinusCks(1:30)
-minusFuncs[[5]](4:10)
 
 
-CalculateBetas<-function(nodes)
-{
-  fuzzy_sets<-CreateFuzzySets(nodes)
-  #integrate(f,left,right)
-}
 
-a<-CreateFuzzySets(1:30)
-b<-CreateFuzzySets(11:41)
-list()
 

@@ -1,7 +1,7 @@
 source("FuzzyPartition.r")
 source("FuzzyTransform.r")
 source("ReadData.r")
-
+options(scipen=999)
 h <- domain[2] - domain[1]
 left_limits <- seq(from=domain[1]-h, length.out = length(domain), by=h)
 right_limits <- seq(from=domain[1]+h, length.out = length(domain), by=h)
