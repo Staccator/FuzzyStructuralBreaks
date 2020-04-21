@@ -12,8 +12,8 @@ minus_cks <-data.frame(matrix(unlist(minus_cks), nrow=length(minus_cks), byrow=T
 
 tab<-cbind(fuzzy_sets,minus_cks,left_limits, right_limits)
 
-res<-apply(tab,1,FUN=function(x){
+res_cont<-apply(tab, 1, FUN=function(x){
   integrate(multi(multi(x[[1]], x[[2]]), gdp_function), x[[3]], x[[4]])[[1]]/
   integrate(multi(multi(x[[1]],x[[2]]),x[[2]]),x[[3]],x[[4]])[[1]]
 })
-res
+res_cont

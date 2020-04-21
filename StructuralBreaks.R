@@ -6,17 +6,17 @@ SetContext<-function(data)
   vR<-(sd(data))/(2*h) #h-odleglosc miedzy wezlami
   c(0,0.15*vR,vR)
 }
-FindStructuralBreaks<-function(betas,context,len)
+FindStructuralBreaks<-function(betas, context)
 {
   n<-length(betas)
   betas[1]<-betas[2]
   betas[n]<-betas[n-1]
-  changeToPos<-which(diff(sign(res))>0)
+  changeToPos<-which(diff(sign(res_cont))>0)
   changes<-betas[changeToPos+1]-betas[changeToPos]
   ind<-which(changes>1.3*context[2])
   res1<-changeToPos[ind]
   
-  changeToNeg<-which(diff(sign(res))<0)
+  changeToNeg<-which(diff(sign(res_cont))<0)
   changes2<-betas[changeToNeg]-betas[changeToNeg+1]
   ind2<-which(changes2>1.3*context[2])
   res2<-changeToNeg[ind2]
@@ -27,5 +27,4 @@ FindStructuralBreaks<-function(betas,context,len)
   
   res<-unique(c(res1,res2,res3))
   res<-res[order(res)]
-  #(res/length(betas))*len
 }

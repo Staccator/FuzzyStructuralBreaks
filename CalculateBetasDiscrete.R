@@ -2,7 +2,6 @@ source("ReadData.R")
 source("FuzzyPartition.R")
 source("FuzzyTransform.R")
 
-
 h <- domain[2] - domain[1]
 nodes <- seq(from=domain[1], length.out = length(domain), by=h)
 fuzzy_sets<-CreateFuzzySets(domain)
@@ -11,12 +10,11 @@ years<-1:length(vector)
 
 tab<-cbind(fuzzy_sets, nodes)
 
-resDiscr<-apply(tab,1,FUN=function(x)
+res_discrete<-apply(tab, 1, FUN=function(x)
   {
   sum(x[[1]](years)*vector*(years-x[[2]]))
 })
-resDiscr
-res
+res_discrete
 
 
 
