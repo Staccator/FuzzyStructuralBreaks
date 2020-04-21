@@ -27,5 +27,5 @@ FindStructuralBreaks<-function(betas,context,len)
   
   res<-unique(c(res1,res2,res3))
   res<-res[order(res)]
-  (res/length(betas))*len
+  #(res/length(betas))*len
 }

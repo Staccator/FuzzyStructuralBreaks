@@ -1,5 +1,6 @@
 source("ReadData.R")
 source("CalculateBetas.R")
+source("StructuralBreaks.R")
 
 plot(vector, type="l", xlab = "Year", ylab = "GDP per year",
      ylim=c(min(vector), max(vector)))
@@ -8,20 +9,21 @@ lower <- min(vector)
 height <- (max(vector) - min(vector)) / 5
 upper <- lower + height
 
-contex<-SetContext(vector)
+context<-SetContext(vector)
 
 breakthroughs <- FindStructuralBreaks(res,context,length(vector))
-breakthroughs
+breakthroughs <- ((breakthroughs-1)*h) + 1
+
 for (year in breakthroughs){
-  xx <- c(year-1, year, year+1)
+  xx <- c(year-h, year, year+h)
   yy <- c(lower, upper, lower)
   polygon(xx, yy, col="yellow")
 }
-
-##for (year in seq_along(vector)){
-# segments(year -1, lower, year, upper, lwd=2, col="black")
-#  segments(year, upper, year + 1, lower, lwd=2, col="black")
-#}
+domain
+for (year in domain){
+ segments(year -h, lower, year, upper, lwd=2, col="black")
+  segments(year, upper, year + h, lower, lwd=2, col="black")
+}
 
 abline(h=lower, lwd=2, col="black")
 
