@@ -15,7 +15,7 @@ FuzzySet<-function(left,right)
     return (x)
   }
 }
-##Przypadki graniczne
+##Przypadek graniczny - pierwszy Fuzzy Set
 FuzzySetLeftBorder<-function(left,right)
 {
   h<-(right-left)/2
@@ -28,7 +28,7 @@ FuzzySetLeftBorder<-function(left,right)
     return (x)
   }
 }
-
+##Przypadek graniczny - ostatni Fuzzy Set
 FuzzySetRightBorder<-function(left,right)
 {
   h<-(right-left)/2
@@ -41,7 +41,8 @@ FuzzySetRightBorder<-function(left,right)
     return (x)
   }
 }
-#Tworzy liste zbiorow rozmytych
+
+#Tworzy liste Fuzzy Sets
 CreateFuzzySets<-function(nodes)
 {
   h<-nodes[2]-nodes[1]
@@ -58,6 +59,7 @@ CreateFuzzySets<-function(nodes)
 
 m<-CreateFuzzySets(1:30)
 
+#Przykladowe wywolanie
 m[[30]](seq(28,33,by=0.2))
 
 
