@@ -12,8 +12,8 @@ upper <- lower + height
 
 context<-SetContext(vector)
 
-breakthroughs_cont <- FindStructuralBreaks(res_cont, context)
-breakthroughs_discrete <- FindStructuralBreaks(res_discrete, context)
+breakthroughs_cont <- FindStructuralBreaks(betasOne_cont, context)
+breakthroughs_discrete <- FindStructuralBreaks(betasOne_discrete, context)
 breakthroughs_cont
 breakthroughs_discrete
 breakthroughs_cont <- ((breakthroughs_cont-1)*h) + 1

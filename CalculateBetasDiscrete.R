@@ -10,11 +10,11 @@ years<-1:length(vector)
 
 tab<-cbind(fuzzy_sets, nodes)
 
-res_discrete<-apply(tab, 1, FUN=function(x)
+betasOne_discrete<-apply(tab, 1, FUN=function(x)
   {
   sum(x[[1]](years)*vector*(years-x[[2]]))
 })
-res_discrete
+betasOne_discrete
 
 
 

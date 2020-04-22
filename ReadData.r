@@ -12,5 +12,5 @@ spain_gdp<-GetCountryGdp("Uruguay")
 
 vector <- simplify2array(spain_gdp)
 gdp_function<-approxfun(vector, rule = 2)
-domain <- seq(1, length(vector), length.out = 20)
+domain <- seq(1, length(vector), length.out = 50)
 
