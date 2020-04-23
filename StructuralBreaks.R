@@ -4,8 +4,8 @@ source("ReadData.R")
 SetContext<-function(data)
 {
   n<-length(data)
-  vR<-(sd(data))/(2*h) #h-odleglosc miedzy wezlami
-  c(0,0.15*vR,vR)
+  vR<-(max(data)-min(data))/(2*h) #h-odleglosc miedzy wezlami
+  c(0,0.4*vR,vR)
 }
 
 #Funkcja zwraca indeksy fuzzy sets
@@ -17,16 +17,16 @@ FindStructuralBreaks<-function(betas, context)
   betas[n]<-betas[n-1]
   changeToPos<-which(diff(sign(betas))>0)
   changes<-betas[changeToPos+1]-betas[changeToPos]
-  ind<-which(changes>1.3*context[2])
+  ind<-which(changes>0.5*context[2])
   res1<-changeToPos[ind]
   
   changeToNeg<-which(diff(sign(betas))<0)
   changes2<-betas[changeToNeg]-betas[changeToNeg+1]
-  ind2<-which(changes2>1.3*context[2])
+  ind2<-which(changes2>0.5*context[2])
   res2<-changeToNeg[ind2]
   
-  ver<-which(abs(betas)>3*context[2])
-  hor<-which(abs(betas)<0.3*context[2])
+  ver<-which(abs(betas)>1*context[2])
+  hor<-which(abs(betas)<0.2*context[2])
   res3<-unique(intersect(ver,hor+1))
   
   res<-unique(c(res1,res2,res3))
