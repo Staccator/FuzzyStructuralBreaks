@@ -15,10 +15,9 @@ GetFirstYear <- function(country){
   1949 + start
 }
 
-country <- "Poland"
+country <- "Uruguay"
 gdp_data<-GetCountryGdp(country)
 first_year <- GetFirstYear(country)
-first_year
 
 vector <- gdp_data
 vector_length <- length(gdp_data)
