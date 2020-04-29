@@ -4,9 +4,18 @@ source("CalculateBetasDiscrete.R")
 source("StructuralBreaks.R")
 source("InverseTransform.R")
 
-plot(first_year + seq_along(vector), vector, type="l", xlab = "Year", ylab = paste("GDP per year for", country),
-     ylim=c(min(vector), max(vector)))
+perYearStr<-"GDP per year for"
+percentageStr<-"Percentage change of GDP for"
 
+if(percentageData)
+{
+   plot(first_year + seq_along(vector), vector, type="l", xlab = "Year", ylab = paste(percentageStr, country),
+     ylim=c(min(vector), max(vector)))
+}else
+{
+  plot(first_year + seq_along(vector), vector, type="l", xlab = "Year", ylab = paste(perYearStr, country),
+       ylim=c(min(vector), max(vector)))
+}
 lower <- min(vector)
 height <- (max(vector) - min(vector)) / 5
 upper <- lower + height
@@ -20,6 +29,9 @@ breakthroughs_cont <- FindStructuralBreaks(betasOne_cont, context)
 breakthroughs_discrete <- FindStructuralBreaks(betasOne_discrete, context)
 breakthroughs_cont <- ((breakthroughs_cont-1)*h) + 1
 breakthroughs_discrete <- ((breakthroughs_discrete-1)*h) + 1
+detected_years_cont<-round(breakthroughs_cont+first_year)
+detected_years_discrete<-round(breakthroughs_discrete+first_year)
+
 
 print('Betas Calculated with Continuous method')
 betasOne_cont
@@ -29,7 +41,10 @@ print('Breathroughs Calculated with Continuous method')
 breakthroughs_cont
 print('Breathroughs Calculated with Discrete method')
 breakthroughs_discrete
-
+print('Years with structural break, Continous method')
+detected_years_cont
+print('Years with structural break, Discrete method')
+detected_years_discrete
 
 offset <- first_year
 draw_triangles <- function(sets, color){
