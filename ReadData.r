@@ -21,12 +21,17 @@ first_year <- GetFirstYear(country)
 
 vector <- gdp_data
 vector_length <- length(gdp_data)
-percentageData<-FALSE
 
-# Comment 3 lines below to get gdp every year (instead of percentage change of gdp)
-vector[2:vector_length] <- (vector[2:vector_length] - vector[1:vector_length - 1])/vector[1:vector_length-1]
-vector[1]=0 
+
+# Change percentageData to FALSE to get gdp every year (instead of percentage change of gdp)
 percentageData<-TRUE
+
+if(percentageData)
+{
+  vector[2:vector_length] <- (vector[2:vector_length] - vector[1:vector_length - 1])/vector[1:vector_length-1]
+  vector[1]=0
+  vector<-100*vector
+}
 
 #Interpolacja
 gdp_function<-approxfun(vector, rule = 2)
