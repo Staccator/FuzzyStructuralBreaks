@@ -15,7 +15,7 @@ GetFirstYear <- function(country){
   1949 + start
 }
 
-country <- "Uruguay"
+country <- "Poland"
 gdp_data<-GetCountryGdp(country)
 first_year <- GetFirstYear(country)
 
@@ -24,7 +24,7 @@ vector_length <- length(gdp_data)
 
 
 # Change percentageData to FALSE to get gdp every year (instead of percentage change of gdp)
-percentageData<-TRUE
+percentageData<-FALSE
 
 if(percentageData)
 {

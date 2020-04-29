@@ -25,8 +25,12 @@ context<-SetContext(vector)
 
 #Obliczenie indeksow Fuzzy Sets, dla ktorych
 #wystepuja przelomy w wykresie
-breakthroughs_cont <- FindStructuralBreaks(betasOne_cont, context)
-breakthroughs_discrete <- FindStructuralBreaks(betasOne_discrete, context)
+
+#Mozemy ustawiac 3. parametr sensitivity ("wrazliwosc" z jaka beda wykrywane breaki)
+#Przy czym sensitivity>=0.1 i sensitivity<=10
+#Im wieksze sensitivity tym wiêcej breakwo powinnismy otrzymac
+breakthroughs_cont <- FindStructuralBreaks(betasOne_cont, context,2)
+breakthroughs_discrete <- FindStructuralBreaks(betasOne_discrete, context,2)
 breakthroughs_cont <- ((breakthroughs_cont-1)*h) + 1
 breakthroughs_discrete <- ((breakthroughs_discrete-1)*h) + 1
 detected_years_cont<-round(breakthroughs_cont+first_year)
